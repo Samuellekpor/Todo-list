@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.todo {
+  max-width: 500px;
+  margin: 50px auto 100px;
+  border: #ccc 1px solid;
+  box-shadow: 0 5px 10px #ccc ;
+}
+
+.page-title {
+  padding: 15px;
+  border-bottom: 1px #ccc solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title h1 {
+  font-size: 20px;
+}
+
+.input {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px #ccc solid;
+  align-items: center;
+}
+
+.description {
+  margin: 0 15px;
+}
+
+#add-input {
+  width: 80%;
+  border: none;
+}
+
+#add-input:focus {
+  outline: none;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: 0.5fr 20fr 1fr;
+  padding: 15px;
+  list-style: none;
+  align-items: center;
+  border-bottom: 1px #ccc solid;
+  font-size: 15px;
+}
+
+.icon {
+  width: 20px;
+}
+
+.clear-link {
+  padding: 20px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+.link {
+  color: #808080;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #000;
+  text-decoration: underline;
+}
