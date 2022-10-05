@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Poppins';
-  src: url('./fonts/Poppins-Italic.ttf') format('ttf'),
+  src:
+    url('./fonts/Poppins-Italic.ttf') format('ttf'),
     url('./fonts/Poppins-Regular.ttf') format('ttf');
   font-weight: 600;
   font-style: normal;
@@ -16,7 +17,7 @@
   max-width: 500px;
   margin: 50px auto 100px;
   border: #ccc 1px solid;
-  box-shadow: 0 5px 10px #ccc ;
+  box-shadow: 0 5px 10px #ccc;
 }
 
 .page-title {
