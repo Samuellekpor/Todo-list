@@ -3,23 +3,7 @@ import iconMove from './images/iconsMove.png';
 import iconEnter from './images/enter.png';
 import iconRefrech from './images/refresh.png';
 
-const tasks = [
-  {
-    description: 'Lorem ipsum dolor',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'Lorem ipsum dolor',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'lorem',
-    completed: false,
-    index: 2,
-  },
-];
+const tasks = [];
 
 const displayTasks = (tasks) => {
   const todoTitle = document.querySelector('.page-title');
