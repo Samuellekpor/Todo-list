@@ -5,6 +5,12 @@ import iconRefrech from './images/refresh.png';
 
 const tasks = [];
 
+if(localStorage.getItem('tasks') === null){
+  tasks = [];
+}else {
+  tasks = JSON.parse(localStorage.getItem('tasks'));
+}
+
 const displayTasks = (tasks) => {
   const todoTitle = document.querySelector('.page-title');
   todoTitle.innerHTML = `<h1>Today's To Do</h1>
@@ -12,7 +18,7 @@ const displayTasks = (tasks) => {
 
   const inputField = document.querySelector('.input');
   inputField.innerHTML = `<input id="add-input" type="text" placeholder="Add your list...">
-  <img class = "icon" src="${iconEnter}" alt="enter-key">`;
+  <button type = "submit"><img class = "icon" src="${iconEnter}" alt="enter-key"></button>`;
 
   const todoContainer = document.querySelector('.todo-list');
   tasks.forEach((task) => {
