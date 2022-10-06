@@ -1,4 +1,4 @@
-export const laodStorage = () => {
+export const loadStorage = () => {
   if(localStorage.getItem('tasks') === null){
     return [];
   }else {
