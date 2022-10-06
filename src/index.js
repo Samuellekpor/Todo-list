@@ -2,14 +2,10 @@ import './style.css';
 import iconMove from './images/iconsMove.png';
 import iconEnter from './images/enter.png';
 import iconRefrech from './images/refresh.png';
+import {laodStorage,updateStorage} from './modules/storage';
+import {addTask,deleteTasks,updateTask,removeTask} from './modules/crud';
 
 const tasks = [];
-
-if(localStorage.getItem('tasks') === null){
-  tasks = [];
-}else {
-  tasks = JSON.parse(localStorage.getItem('tasks'));
-}
 
 const displayTasks = (tasks) => {
   const todoTitle = document.querySelector('.page-title');
