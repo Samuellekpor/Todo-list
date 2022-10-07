@@ -3,10 +3,10 @@ import iconMove from './images/iconsMove.png';
 import iconEnter from './images/enter.png';
 import iconRefrech from './images/refresh.png';
 import iconDelete from './images/trash.png';
-import { loadStorage, updateStorage } from './modules/storage.js';
+import { loadStorage, updateStorage } from './modules/storage';
 import {
   addTask, deleteTasks, updateTask, removeTask, isComplete,
-} from './modules/crud.js';
+} from './modules/crud';
 
 let tasks;
 

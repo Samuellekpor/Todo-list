@@ -1,4 +1,4 @@
-import Task from './task.js';
+import Task from './task';
 
 export const addTask = (arr, description) => {
   const task = new Task((arr.length + 1), description, false);
