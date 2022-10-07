@@ -111,4 +111,11 @@ checkBoxs.forEach((check) => {
   });
 })
 
+clearLink.addEventListener('click', () => {
+  tasks = deleteTasks(tasks);
+  updateStorage(tasks);
+  tasks = loadStorage();
+  window.location.reload();
+})
+
 
