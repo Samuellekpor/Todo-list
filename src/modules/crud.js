@@ -3,24 +3,29 @@ import Task from './task';
 export const addTask = (arr, description) => {
   const task = new Task((arr.length + 1) ,description,false);
   arr.push(task);
+  return arr;
 }
 
 export const deleteTasks = arr => {
-  arr = arr.filter((task) => task.completed !== true);
-  for(let i = 0; i < arr.length; i++) {
-    arr[i].index = i + 1;
+  let newarr = arr.filter((task) => task.completed !== true);
+  for(let i = 0; i < newarr.length; i++) {
+    newarr[i].index = i + 1;
   }
+  return newarr;
 }
 
 export const updateTask = (id, input, arr) => {
-  if (input !== '') {
-    arr[id].description = input;
+  if (input !== '' && input !== arr[id-1].description) {
+    arr[id-1].description = input;
   }
 }
 
 export const removeTask = (index, arr) => {
-  arr.slice(index,1);
-  for(let i = 0; i < arr.length; i++) {
-    arr[i].index = i + 1;
+  let newarr = arr.filter((task) => task.index === index);
+  for(let i = 0; i < newarr.length; i++) {
+    newarr[i].index = i + 1;
   }
+
+  return newarr;
 }
+

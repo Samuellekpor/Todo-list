@@ -2,9 +2,9 @@ import './style.css';
 import iconMove from './images/iconsMove.png';
 import iconEnter from './images/enter.png';
 import iconRefrech from './images/refresh.png';
-import iconDelete from './images/trash.png'
+import iconDelete from './images/trash.png';
 import {loadStorage,updateStorage} from './modules/storage.js';
-import {addTask,deleteTasks,updateTask,removeTask} from './modules/crud.js';
+import {addTask,deleteTasks,updateTask,removeTask,isComplete} from './modules/crud.js';
 
 let tasks;
 
@@ -17,16 +17,16 @@ const displayTasks = (tasks) => {
 
   const inputField = document.querySelector('.input');
   inputField.innerHTML = `<input id="add-input" type="text" placeholder="Add your list...">
-  <button class="submit-button" type="submit"><img class="icon" src="${iconEnter}" alt="enter-key"></button>`;
+  <a class="submit-button" type="submit"><img class="icon" src="${iconEnter}" alt="enter-key"></a>`;
 
   const todoContainer = document.querySelector('.todo-list');
   tasks.forEach((task) => {
     const taskContainer = document.createElement('li');
     taskContainer.className = 'task';
-    taskContainer.innerHTML = `<input type="checkbox" name="checkbox" id="${task.index}">
+    taskContainer.innerHTML = `<input type="checkbox" class="checkbox" value="${task.completed}" name="checkbox" id="${task.index}">
     <p class="description" contenteditable="true">${task.description}</p>
-    <img class="move-image icon" src="${iconMove}" alt="move-icon">
-    <img class="hide move-image icon" src="${iconDelete}" alt="move-icon">`;
+    <img class="move-image icon" id="iconMove" src="${iconMove}" alt="move-icon">
+    <img class="hide move-image icon" id="iconDelete" src="${iconDelete}" alt="move-icon">`;
 
     todoContainer.appendChild(taskContainer);
   });
@@ -36,11 +36,62 @@ displayTasks(tasks);
 
 const enterBtn = document.querySelector('.submit-button');
 const input = document.querySelector('#add-input');
+const clearLink = document.querySelector('.link');
 
 enterBtn.addEventListener('click', () => {
   if (input.value !== '') {
-    addTask(tasks, input.value);
-  updateStorage(tasks);
-  loadStorage();
+    tasks = addTask(tasks, input.value);
+    updateStorage(tasks);
+    tasks = loadStorage();
+    window.location.reload();
   }
+  
 });
+
+const edittables = document.querySelectorAll('[contenteditable]');
+  
+edittables.forEach((editable) => {
+  const moveIcon = editable.nextElementSibling;
+  const deleteIcon = moveIcon.nextElementSibling;
+  
+  editable.addEventListener('focus',(event) => {
+    event.target.parentElement.className = 'bisque';
+    event.target.style.outline = '0';
+    deleteIcon.className = 'show icon';
+    moveIcon.className = 'hide';
+  });
+  
+  editable.addEventListener('blur',(event) => {
+    event.target.parentElement.className = 'task';
+    deleteIcon.className = 'hide';
+    moveIcon.className = 'icon move-image';
+
+    let firstTag = editable.firstChild.nodeName;
+    let keyTag = new RegExp(
+      firstTag === '#text' ? '<br' : '</' + firstTag,
+      'i'
+    );
+    let tmp = document.createElement('p');
+    tmp.innerHTML = editable.innerHTML
+      .replace(/<[^>]+>/g, (m, i) => (keyTag.test(m) ? '{ß®}' : ''))
+      .replace(/{ß®}$/, '');
+      const edited =  tmp.innerText.replace(/{ß®}/g, '\n');  
+
+    let theId = event.target.parentElement.children[0].id;
+
+    updateTask(theId,edited,tasks);
+    updateStorage(tasks);
+    loadStorage();
+  })
+
+  deleteIcon.addEventListener('click', (event) => {
+    let theId = event.target.parentElement.children[0].id;
+    event.target.parentElement.className = 'hide';
+    tasks = removeTask(theId, tasks);
+    updateStorage(tasks);
+    tasks = loadStorage();
+  })
+
+})
+
+

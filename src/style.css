@@ -63,6 +63,10 @@
   font-size: 15px;
 }
 
+.task > *[contenteditable='true'] {
+  outline: 0px solid transparent;
+}
+
 .icon {
   width: 20px;
 }
@@ -83,10 +87,30 @@
   text-decoration: underline;
 }
 
+.checked {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 .hide {
   display: none;
 }
 
 .show {
   display: block;
+}
+
+.bisque {
+  background-color: bisque;
+  display: grid;
+  grid-template-columns: 0.5fr 20fr 1fr;
+  padding: 15px;
+  list-style: none;
+  align-items: center;
+  border-bottom: 1px #ccc solid;
+  font-size: 15px;
+}
+
+img {
+  cursor: pointer;
 }
