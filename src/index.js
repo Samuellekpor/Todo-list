@@ -94,4 +94,21 @@ edittables.forEach((editable) => {
 
 })
 
+const checkBoxs = document.querySelectorAll('.checkbox');
+
+checkBoxs.forEach((check) => {
+  const task = tasks[check.id-1];
+  if (task.completed) {
+    check.checked = true;
+    check.nextElementSibling.className = 'description checked';
+  }
+
+  check.addEventListener('click', () => {
+    tasks = loadStorage();
+    isComplete(tasks,task.index);
+    updateStorage(tasks);
+    location.reload();
+  });
+})
+
 
