@@ -25,7 +25,7 @@ git clone git@github.com:Strangeal/Portfolio.git
 ```
 3. To access cloned directory run:
 ```bash
-cd MyPortfolio
+cd To Do List
 ```
 3. Open it with the live server
 
