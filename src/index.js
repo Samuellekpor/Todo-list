@@ -3,8 +3,10 @@ import iconMove from './images/iconsMove.png';
 import iconEnter from './images/enter.png';
 import iconRefrech from './images/refresh.png';
 import iconDelete from './images/trash.png';
-import {loadStorage,updateStorage} from './modules/storage.js';
-import {addTask,deleteTasks,updateTask,removeTask,isComplete} from './modules/crud.js';
+import { loadStorage, updateStorage } from './modules/storage.js';
+import {
+  addTask, deleteTasks, updateTask, removeTask, isComplete,
+} from './modules/crud.js';
 
 let tasks;
 
@@ -45,59 +47,57 @@ enterBtn.addEventListener('click', () => {
     tasks = loadStorage();
     window.location.reload();
   }
-  
 });
 
 const edittables = document.querySelectorAll('[contenteditable]');
-  
+
 edittables.forEach((editable) => {
   const moveIcon = editable.nextElementSibling;
   const deleteIcon = moveIcon.nextElementSibling;
-  
-  editable.addEventListener('focus',(event) => {
+
+  editable.addEventListener('focus', (event) => {
     event.target.parentElement.className = 'bisque';
     event.target.style.outline = '0';
     deleteIcon.className = 'show icon';
     moveIcon.className = 'hide';
   });
-  
-  editable.addEventListener('blur',(event) => {
+
+  editable.addEventListener('blur', (event) => {
     event.target.parentElement.className = 'task';
     deleteIcon.className = 'hide';
     moveIcon.className = 'icon move-image';
 
-    let firstTag = editable.firstChild.nodeName;
-    let keyTag = new RegExp(
-      firstTag === '#text' ? '<br' : '</' + firstTag,
-      'i'
+    const firstTag = editable.firstChild.nodeName;
+    const keyTag = new RegExp(
+      firstTag === '#text' ? '<br' : `</${firstTag}`,
+      'i',
     );
-    let tmp = document.createElement('p');
+    const tmp = document.createElement('p');
     tmp.innerHTML = editable.innerHTML
-      .replace(/<[^>]+>/g, (m, i) => (keyTag.test(m) ? '{ß®}' : ''))
+      .replace(/<[^>]+>/g, (m) => (keyTag.test(m) ? '{ß®}' : ''))
       .replace(/{ß®}$/, '');
-      const edited =  tmp.innerText.replace(/{ß®}/g, '\n');  
+    const edited = tmp.innerText.replace(/{ß®}/g, '\n');
 
-    let theId = event.target.parentElement.children[0].id;
+    const theId = event.target.parentElement.children[0].id;
 
-    updateTask(theId,edited,tasks);
+    updateTask(theId, edited, tasks);
     updateStorage(tasks);
     loadStorage();
-  })
+  });
 
   deleteIcon.addEventListener('click', (event) => {
-    let theId = event.target.parentElement.children[0].id;
+    const theId = event.target.parentElement.children[0].id;
     event.target.parentElement.className = 'hide';
     tasks = removeTask(theId, tasks);
     updateStorage(tasks);
     tasks = loadStorage();
-  })
-
-})
+  });
+});
 
 const checkBoxs = document.querySelectorAll('.checkbox');
 
 checkBoxs.forEach((check) => {
-  const task = tasks[check.id-1];
+  const task = tasks[check.id - 1];
   if (task.completed) {
     check.checked = true;
     check.nextElementSibling.className = 'description checked';
@@ -105,17 +105,15 @@ checkBoxs.forEach((check) => {
 
   check.addEventListener('click', () => {
     tasks = loadStorage();
-    isComplete(tasks,task.index);
+    isComplete(tasks, task.index);
     updateStorage(tasks);
-    location.reload();
+    window.location.reload();
   });
-})
+});
 
 clearLink.addEventListener('click', () => {
   tasks = deleteTasks(tasks);
   updateStorage(tasks);
   tasks = loadStorage();
   window.location.reload();
-})
-
-
+});
