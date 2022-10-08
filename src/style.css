@@ -47,6 +47,7 @@
 #add-input {
   width: 80%;
   border: none;
+  font-style: italic;
 }
 
 #add-input:focus {
@@ -55,12 +56,16 @@
 
 .task {
   display: grid;
-  grid-template-columns: 0.5fr 20fr 1fr;
+  grid-template-columns: 0.5fr 20fr 0.5fr 0.5fr;
   padding: 15px;
   list-style: none;
   align-items: center;
   border-bottom: 1px #ccc solid;
   font-size: 15px;
+}
+
+.task > *[contenteditable='true'] {
+  outline: 0 solid transparent;
 }
 
 .icon {
@@ -81,4 +86,32 @@
 .link:hover {
   color: #000;
   text-decoration: underline;
+}
+
+.checked {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.bisque {
+  background-color: bisque;
+  display: grid;
+  grid-template-columns: 0.5fr 20fr 1fr;
+  padding: 15px;
+  list-style: none;
+  align-items: center;
+  border-bottom: 1px #ccc solid;
+  font-size: 15px;
+}
+
+img {
+  cursor: pointer;
 }
