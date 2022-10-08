@@ -21,12 +21,12 @@ export const updateTask = (id, input, arr) => {
 };
 
 export const removeTask = (index, arr) => {
-  const newarr = arr.filter((task) => task.index === index);
-  for (let i = 0; i < newarr.length; i += 1) {
-    newarr[i].index = i + 1;
+  arr.splice(index - 1, 1);
+  for (let i = 0; i < arr.length; i += 1) {
+    arr[i].index = i + 1;
   }
 
-  return newarr;
+  return arr;
 };
 
 export const isComplete = (arr, id) => {

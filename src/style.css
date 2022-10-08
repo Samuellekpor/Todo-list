@@ -47,6 +47,7 @@
 #add-input {
   width: 80%;
   border: none;
+  font-style: italic;
 }
 
 #add-input:focus {
@@ -55,7 +56,7 @@
 
 .task {
   display: grid;
-  grid-template-columns: 0.5fr 20fr 1fr;
+  grid-template-columns: 0.5fr 20fr 0.5fr 0.5fr;
   padding: 15px;
   list-style: none;
   align-items: center;

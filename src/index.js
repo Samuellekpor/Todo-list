@@ -18,7 +18,7 @@ const displayTasks = (tasks) => {
   <img class="icon" src="${iconRefrech}" alt="refresh">`;
 
   const inputField = document.querySelector('.input');
-  inputField.innerHTML = `<input id="add-input" type="text" placeholder="Add your list...">
+  inputField.innerHTML = `<input id="add-input" type="text" placeholder="Add to your list...">
   <a class="submit-button" type="submit"><img class="icon" src="${iconEnter}" alt="enter-key"></a>`;
 
   const todoContainer = document.querySelector('.todo-list');
@@ -64,7 +64,7 @@ edittables.forEach((editable) => {
 
   editable.addEventListener('blur', (event) => {
     event.target.parentElement.className = 'task';
-    deleteIcon.className = 'hide';
+    deleteIcon.className = 'icon';
     moveIcon.className = 'icon move-image';
 
     const firstTag = editable.firstChild.nodeName;
@@ -87,10 +87,10 @@ edittables.forEach((editable) => {
 
   deleteIcon.addEventListener('click', (event) => {
     const theId = event.target.parentElement.children[0].id;
-    event.target.parentElement.className = 'hide';
-    tasks = removeTask(theId, tasks);
-    updateStorage(tasks);
+    const newtasks = removeTask(theId, tasks);
+    updateStorage(newtasks);
     tasks = loadStorage();
+    window.location.reload();
   });
 });
 
