@@ -5,8 +5,9 @@ import iconRefrech from './images/refresh.png';
 import iconDelete from './images/trash.png';
 import { loadStorage, updateStorage } from './modules/storage';
 import {
-  addTask, deleteTasks, updateTask, removeTask, isComplete,
+  addTask, deleteTasks, updateTask, removeTask,
 } from './modules/crud';
+import isComplete from './modules/competetask';
 
 let tasks;
 
