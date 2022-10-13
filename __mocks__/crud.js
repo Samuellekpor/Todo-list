@@ -29,4 +29,3 @@ export const removeTask = (index, arr) => {
   return arr;
 };
 
-module.exports = addTask;
