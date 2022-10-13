@@ -1,4 +1,4 @@
-import Task from "../src/modules/task";
+import Task from '../src/modules/task';
 
 export const addTask = (arr, description) => {
   const task = new Task(arr.length + 1, description, false);
@@ -15,7 +15,7 @@ export const deleteTasks = (arr) => {
 };
 
 export const updateTask = (id, input, arr) => {
-  if (input !== "" && input !== arr[id - 1].description) {
+  if (input !== '' && input !== arr[id - 1].description) {
     arr[id - 1].description = input;
   }
 };
@@ -28,4 +28,3 @@ export const removeTask = (index, arr) => {
 
   return arr;
 };
-
