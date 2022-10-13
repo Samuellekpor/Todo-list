@@ -1,3 +1,4 @@
+import isComplete from '../../__mocks__/completetask';
 import { addTask, removeTask, updateTask, deleteTasks } from '../../__mocks__/crud';
 
 describe('add and remove tasks from array', () => {
@@ -59,6 +60,32 @@ describe('add and remove tasks from array', () => {
     ];
     const result = deleteTasks(arr);
     expect(result).toEqual(expected);
+  })
+
+  test('Update an item\'s completed status', () => {
+    const arr = [
+      { index: 1, description: 'Taskone', completed: false },
+      { index: 2, description: 'Tasktwo', completed: true },
+      { index: 3, description: 'Taskthree', completed: false },
+      { index: 4, description: 'Taskfour', completed: true },
+    ];
+
+    const expected = [
+      { index: 1, description: 'Taskone', completed: false },
+      { index: 2, description: 'Tasktwo', completed: false },
+      { index: 3, description: 'Taskthree', completed: false },
+      { index: 4, description: 'Taskfour', completed: true },
+    ];
+
+    const result = isComplete(arr,2);
+
+    expect(result).toEqual(expected);
+    expect(isComplete(arr,3)).toEqual([
+      { index: 1, description: 'Taskone', completed: false },
+      { index: 2, description: 'Tasktwo', completed: false },
+      { index: 3, description: 'Taskthree', completed: true },
+      { index: 4, description: 'Taskfour', completed: true },
+    ])
   })
 });
 
