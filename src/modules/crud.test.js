@@ -1,4 +1,4 @@
-import { addTask, removeTask, updateTask } from '../../__mocks__/crud';
+import { addTask, removeTask, updateTask, deleteTasks } from '../../__mocks__/crud';
 
 describe('add and remove tasks from array', () => {
   test('should add task to the list', () => {
@@ -43,7 +43,22 @@ describe('add and remove tasks from array', () => {
     ];
     const result = updateTask(2,'New task',arr);
     expect(result).toEqual(expected);
+  })
 
+  test('Remove all completed tasks', () =>  {
+    const arr = [
+      { index: 1, description: 'Taskone', completed: false },
+      { index: 2, description: 'Tasktwo', completed: true },
+      { index: 3, description: 'Taskthree', completed: false },
+      { index: 4, description: 'Taskfour', completed: true },
+    ];
+
+    const expected = [
+      { index: 1, description: 'Taskone', completed: false },
+      { index: 2, description: 'Taskthree', completed: false },
+    ];
+    const result = deleteTasks(arr);
+    expect(result).toEqual(expected);
   })
 });
 
