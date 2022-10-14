@@ -90,4 +90,22 @@
   
       expect(todoContainer.childElementCount).toBe(2);
     })
+
+    test('Update description of a task', () => {
+      let tasks = loadStorage();
+      tasks = updateTask(2, 'New new task', tasks);
+      updateStorage(tasks);
+  
+      const todoContainer = document.createElement('ul');
+      tasks.forEach((task) => {
+        const taskContainer = document.createElement('li');
+        taskContainer.innerHTML = `<input type="checkbox" class="checkbox" value="${task.completed}" name="checkbox" id="${task.index}">
+        <p class="description" contenteditable="true">${task.description}</p>`;
+    
+        todoContainer.appendChild(taskContainer);
+      });
+  
+      expect(todoContainer.children[1].children[0].id).toEqual('2');
+      expect(todoContainer.children[1].children[1].textContent).toMatch('New new task');
+    })
   })
