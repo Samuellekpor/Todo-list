@@ -56,4 +56,38 @@
       expect(todoContainer.children[0].children[0].id).toEqual('1');
       expect(todoContainer.children[0].children[1].textContent).toMatch('new task');
     });
+
+    test('Testing completed status of tasks', () => {
+      let tasks = loadStorage();
+      tasks = addTask(tasks,"Another task");
+      tasks = addTask(tasks,"Another task again");
+      isComplete(tasks, 2);
+      updateStorage(tasks);
+  
+      const todoContainer = document.createElement('ul');
+      tasks.forEach((task) => {
+        const taskContainer = document.createElement('li');
+        taskContainer.innerHTML = `<input type="checkbox" class="checkbox" value="${task.completed}" name="checkbox" id="${task.index}">
+        <p class="description" contenteditable="true">${task.description}</p>`;
+    
+        todoContainer.appendChild(taskContainer);
+      });
+  
+      expect(todoContainer.children[0].children[0].value).not.toBeTruthy;
+      expect(todoContainer.children[1].children[0].value).toBeTruthy;
+    })
+
+    test('Deleting completed tasks', () => {
+      let tasks = loadStorage();
+      tasks = deleteTasks(tasks);
+      updateStorage(tasks);
+  
+      const todoContainer = document.createElement('ul');
+      tasks.forEach(() => {
+        const taskContainer = document.createElement('li');
+        todoContainer.appendChild(taskContainer);
+      })
+  
+      expect(todoContainer.childElementCount).toBe(2);
+    })
   })
