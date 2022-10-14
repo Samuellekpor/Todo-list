@@ -21,4 +21,19 @@
  
      expect(todoContainer.children).toHaveLength(1);
    })
+
+   test('Test deleting of element from the list', () => {
+    let tasks = loadStorage();
+    tasks = removeTask(1, tasks);
+    updateStorage(tasks);
+
+    const todoContainer = document.createElement('ul');
+
+    tasks.forEach(() => {
+      const taskContainer = document.createElement('li');
+      todoContainer.appendChild(taskContainer);
+    })
+
+    expect(todoContainer.children).toHaveLength(0);
+  })
  })
