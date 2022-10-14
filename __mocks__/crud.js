@@ -18,6 +18,7 @@ export const updateTask = (id, input, arr) => {
   if (input !== '' && input !== arr[id - 1].description) {
     arr[id - 1].description = input;
   }
+  return arr;
 };
 
 export const removeTask = (index, arr) => {
