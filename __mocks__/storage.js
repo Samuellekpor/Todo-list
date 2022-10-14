@@ -1,5 +1,6 @@
-export const loadStorage = () => JSON.parse(localStorage.getItem('tasks')) || [];
+let storage = [];
+export const loadStorage = () => storage;
 
 export const updateStorage = (tasks) => {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  storage = tasks;
 };
