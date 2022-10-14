@@ -37,3 +37,23 @@
     expect(todoContainer.children).toHaveLength(0);
   })
  })
+
+ describe('Dom manipulation tests', () => {
+    test('Testing display of elements', () => {
+      let tasks = loadStorage();
+      tasks = addTask(tasks,"new task");
+      updateStorage(tasks);
+  
+      const todoContainer = document.createElement('ul');
+      tasks.forEach((task) => {
+        const taskContainer = document.createElement('li');
+        taskContainer.innerHTML = `<input type="checkbox" class="checkbox" value="${task.completed}" name="checkbox" id="${task.index}">
+        <p class="description" contenteditable="true">${task.description}</p>`;
+    
+        todoContainer.appendChild(taskContainer);
+      });
+  
+      expect(todoContainer.children[0].children[0].id).toEqual('1');
+      expect(todoContainer.children[0].children[1].textContent).toMatch('new task');
+    });
+  })
