@@ -16,11 +16,11 @@ tasks = loadStorage();
 const displayTasks = (tasks) => {
   const todoTitle = document.querySelector('.page-title');
   todoTitle.innerHTML = `<h1>Today's To Do</h1>
-  <img class="icon" src="${iconRefrech}" alt="refresh">`;
+  <img class="icon" src="./${iconRefrech}" alt="refresh">`;
 
   const inputField = document.querySelector('.input');
   inputField.innerHTML = `<input id="add-input" type="text" placeholder="Add to your list...">
-  <a class="submit-button" type="submit"><img class="icon" src="${iconEnter}" alt="enter-key"></a>`;
+  <a class="submit-button" type="submit"><img class="icon" src="./${iconEnter}" alt="enter-key"></a>`;
 
   const todoContainer = document.querySelector('.todo-list');
   tasks.forEach((task) => {
@@ -28,8 +28,8 @@ const displayTasks = (tasks) => {
     taskContainer.className = 'task';
     taskContainer.innerHTML = `<input type="checkbox" class="checkbox" value="${task.completed}" name="checkbox" id="${task.index}">
     <p class="description" contenteditable="true">${task.description}</p>
-    <img class="move-image icon" id="iconMove" src="${iconMove}" alt="move-icon">
-    <img class="hide move-image icon" id="iconDelete" src="${iconDelete}" alt="move-icon">`;
+    <img class="move-image icon" id="iconMove" src="./${iconMove}" alt="move-icon">
+    <img class="hide move-image icon" id="iconDelete" src="./${iconDelete}" alt="move-icon">`;
 
     todoContainer.appendChild(taskContainer);
   });
